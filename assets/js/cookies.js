@@ -1,7 +1,7 @@
 (function () {
   var KEY = 'og-cookie-consent';
   // GA4 measurement ID
-  var GA_ID = 'REPLACE_WITH_GA_ID';
+  var GA_ID = 'G-0JPN3FLJMF';
   var gaLoaded = false;
   var banner = null;
 
@@ -53,7 +53,7 @@
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie consent');
     banner.innerHTML =
-      '<p class="cookie-banner__text">We use Google Analytics to see how the site is used, and only if you accept. ' +
+      '<p class="cookie-banner__text"> We use cookies to improve your experience on our site. By using our site, you consent to cookies. ' +
       '<a href="/privacy">Privacy policy</a></p>' +
       '<div class="cookie-banner__actions">' +
         '<button type="button" class="cookie-banner__btn" data-consent="accept">Accept</button>' +
