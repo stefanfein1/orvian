@@ -2,10 +2,13 @@
   var toggle = document.querySelector('.menu-toggle');
   var menu = document.getElementById('mobile-menu');
   if (!toggle || !menu) return;
+  var labels = document.documentElement.lang === 'fr'
+    ? { open: 'Ouvrir le menu', close: 'Fermer le menu' }
+    : { open: 'Open menu', close: 'Close menu' };
 
   function setOpen(open) {
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.setAttribute('aria-label', open ? labels.close : labels.open);
     menu.hidden = !open;
     document.documentElement.classList.toggle('menu-open', open);
   }

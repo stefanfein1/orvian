@@ -4,6 +4,19 @@
   var GA_ID = 'G-0JPN3FLJMF';
   var gaLoaded = false;
   var banner = null;
+  var copy = document.documentElement.lang === 'fr' ? {
+    label: 'Consentement aux cookies',
+    text: 'Nous utilisons Google Analytics pour savoir comment le site est utilisé, uniquement si vous l’acceptez.',
+    policy: 'Politique de confidentialité',
+    accept: 'Accepter',
+    reject: 'Refuser'
+  } : {
+    label: 'Cookie consent',
+    text: 'We use Google Analytics to see how the site is used, and only if you accept.',
+    policy: 'Privacy policy',
+    accept: 'Accept',
+    reject: 'Decline'
+  };
 
   function read() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -14,7 +27,7 @@
   }
 
   function gaReady() {
-    return GA_ID && GA_ID.indexOf('REPLACE') !== 0;
+    return !!GA_ID;
   }
 
   function loadGA() {
@@ -51,13 +64,13 @@
     banner = document.createElement('div');
     banner.className = 'cookie-banner';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.setAttribute('aria-label', copy.label);
     banner.innerHTML =
-      '<p class="cookie-banner__text"> We use cookies to improve your experience on our site. By using our site, you consent to cookies. ' +
-      '<a href="/privacy">Privacy policy</a></p>' +
+      '<p class="cookie-banner__text">' + copy.text + ' ' +
+      '<a href="/privacy">' + copy.policy + '</a></p>' +
       '<div class="cookie-banner__actions">' +
-        '<button type="button" class="cookie-banner__btn" data-consent="accept">Accept</button>' +
-        '<button type="button" class="cookie-banner__btn" data-consent="reject">Decline</button>' +
+        '<button type="button" class="cookie-banner__btn" data-consent="accept">' + copy.accept + '</button>' +
+        '<button type="button" class="cookie-banner__btn" data-consent="reject">' + copy.reject + '</button>' +
       '</div>';
     banner.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-consent]');
