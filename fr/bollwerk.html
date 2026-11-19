@@ -8,6 +8,7 @@
 <link rel="canonical" href="https://www.orvianglobal.com/fr/bollwerk">
 <link rel="alternate" hreflang="en" href="https://www.orvianglobal.com/bollwerk">
 <link rel="alternate" hreflang="fr" href="https://www.orvianglobal.com/fr/bollwerk">
+<link rel="alternate" hreflang="de" href="https://www.orvianglobal.com/de/bollwerk">
 <link rel="alternate" hreflang="x-default" href="https://www.orvianglobal.com/bollwerk">
 <meta name="theme-color" content="#070d0a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -27,7 +28,14 @@
       <a class="site-nav__link" href="/fr/prestations">Prestations</a>
       <a class="site-nav__link" href="/fr/projets">Projets</a>
       <a class="site-nav__link" href="/fr/contact">Contact</a>
-      <a class="site-nav__link site-nav__lang" href="/bollwerk" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <div class="lang-switch">
+        <button class="site-nav__link site-nav__lang lang-switch__btn" type="button" aria-expanded="false" aria-controls="lang-menu" aria-label="Langue : Français"><span>FR</span><svg class="lang-switch__chev" width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button>
+        <ul class="lang-switch__menu" id="lang-menu" aria-label="Langue" hidden>
+          <li><a href="/bollwerk" hreflang="en" lang="en" aria-label="English">EN</a></li>
+          <li><a href="/fr/bollwerk" hreflang="fr" lang="fr" aria-label="Français" aria-current="true">FR</a></li>
+          <li><a href="/de/bollwerk" hreflang="de" lang="de" aria-label="Deutsch">DE</a></li>
+        </ul>
+      </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
         <svg class="icon-open" width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 1h20M0 9h20"/></svg>
         <svg class="icon-close" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg>
