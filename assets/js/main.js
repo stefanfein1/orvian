@@ -2,9 +2,10 @@
   var toggle = document.querySelector('.menu-toggle');
   var menu = document.getElementById('mobile-menu');
   if (!toggle || !menu) return;
-  var labels = document.documentElement.lang === 'fr'
-    ? { open: 'Ouvrir le menu', close: 'Fermer le menu' }
-    : { open: 'Open menu', close: 'Close menu' };
+  var labels = {
+    fr: { open: 'Ouvrir le menu', close: 'Fermer le menu' },
+    de: { open: 'Menü öffnen', close: 'Menü schliessen' }
+  }[document.documentElement.lang] || { open: 'Open menu', close: 'Close menu' };
 
   function setOpen(open) {
     toggle.setAttribute('aria-expanded', String(open));
@@ -26,6 +27,48 @@
 
   window.matchMedia('(max-width: 860px)').addEventListener('change', function (e) {
     if (!e.matches) setOpen(false);
+  });
+})();
+
+(function () {
+  var sw = document.querySelector('.lang-switch');
+  if (!sw) return;
+  var btn = sw.querySelector('.lang-switch__btn');
+  var menu = sw.querySelector('.lang-switch__menu');
+
+  function setOpen(open) {
+    btn.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+  }
+
+  btn.addEventListener('click', function () {
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    setOpen(open);
+    if (open) {
+      var current = menu.querySelector('[aria-current]') || menu.querySelector('a');
+      if (current) current.focus();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!sw.contains(e.target)) setOpen(false);
+  });
+
+  sw.addEventListener('keydown', function (e) {
+    var links = [].slice.call(menu.querySelectorAll('a'));
+    var i = links.indexOf(document.activeElement);
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      btn.focus();
+    } else if (!menu.hidden && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      e.preventDefault();
+      var next = e.key === 'ArrowDown' ? i + 1 : i - 1;
+      links[(next + links.length) % links.length].focus();
+    }
+  });
+
+  sw.addEventListener('focusout', function (e) {
+    if (e.relatedTarget && !sw.contains(e.relatedTarget)) setOpen(false);
   });
 })();
 

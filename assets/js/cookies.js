@@ -4,13 +4,22 @@
   var GA_ID = 'G-0JPN3FLJMF';
   var gaLoaded = false;
   var banner = null;
-  var copy = document.documentElement.lang === 'fr' ? {
+  var copy = {
+    fr: {
     label: 'Consentement aux cookies',
     text: 'Nous utilisons Google Analytics pour savoir comment le site est utilisé, uniquement si vous l’acceptez.',
     policy: 'Politique de confidentialité',
     accept: 'Accepter',
     reject: 'Refuser'
-  } : {
+    },
+    de: {
+      label: 'Cookie-Einwilligung',
+      text: 'Wir verwenden Google Analytics, um zu sehen, wie die Website genutzt wird, jedoch nur mit Ihrer Zustimmung.',
+      policy: 'Datenschutzerklärung',
+      accept: 'Akzeptieren',
+      reject: 'Ablehnen'
+    }
+  }[document.documentElement.lang] || {
     label: 'Cookie consent',
     text: 'We use Google Analytics to see how the site is used, and only if you accept.',
     policy: 'Privacy policy',
